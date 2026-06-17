@@ -1,17 +1,10 @@
-import os
 import requests
-from dotenv import load_dotenv
 
-load_dotenv()
+def sendMessage(zapiId:str, zapiToken:str, phone:str, message:str):
+    url = f'https://api.z-api.io/instances/{zapiId}/token/{zapiToken}/send-text'
+    payload = {"phone": phone, "message": message}
+    header = {"Client-Token": url, "Content-Type": "application/json"}
 
-zapi = os.getenv('ZAPI')
-
-def sendMessage():
-    payload = {"phone": "5521988670501", "message": 'Olá mundo'}
-    header = {"Client-Token": zapi, "Content-Type": "application/json"}
-
-    response = requests.post(zapi, json = payload, headers = header)
+    response = requests.post(url, json = payload, headers = header)
 
     print(response.text)
-
-sendMessage()
