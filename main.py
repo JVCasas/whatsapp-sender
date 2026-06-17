@@ -11,7 +11,7 @@ def listContacts():
     except:
         print('Erro ao gerar lista de contatos.')
 
-def getContacts():
+def getAllContacts():
     try:
         db = databaseConnect.dataConnect()
         data = databaseConnect.dataSearch(db, 'contacts')
@@ -20,6 +20,10 @@ def getContacts():
     except:
         print('Erro ao adquirir lista de contatos.')
 
+def getContactsList(contactList:list):
+    db = databaseConnect.dataConnect()
+    data = databaseConnect.dataSearchInTable(db, 'contacts', 'id', contactList)
+
 def sendGreeting(name:str, phone:str):
     message = f'Olá, {name} tudo bem com você?'
     try:
@@ -27,7 +31,12 @@ def sendGreeting(name:str, phone:str):
     except:
         print('Erro ao enviar saudação.')        
 
+def sendGreetingForAll():
+    contacts = getAllContacts()
+    
+    for c in contacts:
+        sendGreeting(c['Name'], c['Cellphone'])
+
 if __name__ == "__main__":
     listContacts()
-    contacts = getContacts()
-    sendGreeting('Juan', '5521988670501')
+    

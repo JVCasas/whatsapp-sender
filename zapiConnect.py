@@ -6,11 +6,12 @@ load_dotenv()
 
 zId:str = os.getenv('ZAPI_ID')
 zToken:str = os.getenv('ZAPI_TOKEN')
+zClientToken:str = os.getenv('ZAPI_CLIENT_TOKEN')
 
 def sendMessage(phone:str, message:str):
     url = f'https://api.z-api.io/instances/{zId}/token/{zToken}/send-text'
     payload = {"phone": phone, "message": message}
-    header = {"Client-Token": url, "Content-Type": "application/json"}
+    header = {"Client-Token": zClientToken, "Content-Type": "application/json"}
 
     try:
         response = requests.post(url, json = payload, headers = header)
