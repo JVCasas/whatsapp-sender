@@ -24,3 +24,15 @@ def dataSearch(database: Client, tableName: str) -> list[dict]:
         print(f'Erro ao buscar no banco de dados: {e}')
         
         return []
+
+def dataSearchInTable(database: Client, tableName: str, collumn:str, value):
+
+    try:
+        searchRequest = database.table(tableName).select('*').eq(collumn, value).execute()
+
+        return searchRequest
+    
+    except Exception as e:
+        print(f'Erro ao buscar no banco de dados: {e}')
+        
+        return []
