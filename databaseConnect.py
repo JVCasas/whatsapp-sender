@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+url: str = os.getenv('SUPABASE_TOKEN')
+key: str = os.getenv('SUPABASE_KEY')
+
 def dataConnect() -> Client:
-    url: str = os.getenv('SUPABASE_TOKEN')
-    key: str = os.getenv('SUPABASE_KEY')
 
     supabaseClient: Client = create_client(url, key)
 
@@ -23,9 +24,3 @@ def dataSearch(database: Client, tableName: str) -> list[dict]:
         print(f'Erro ao buscar no banco de dados: {e}')
         
         return []
-
-db = dataConnect()
-
-data = dataSearch(db, 'contacts')
-
-print(data)
