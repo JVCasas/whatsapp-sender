@@ -23,3 +23,11 @@ def sendMessage(phone:str, message:str):
     except requests.exceptions.RequestException as e:
         print('Erro ao enviar mensagem!')
         print(e)
+
+# Função que recebe um nome e um número de telefone e envia uma mensagem de saudação.
+def sendGreeting(name:str, phone:str):
+    message = f'Olá, {name} tudo bem com você?'
+    try:
+        sendMessage(phone, message)
+    except:
+        print('Erro ao enviar saudação.')
