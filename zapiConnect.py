@@ -8,6 +8,7 @@ zId:str = os.getenv('ZAPI_ID')
 zToken:str = os.getenv('ZAPI_TOKEN')
 zClientToken:str = os.getenv('ZAPI_CLIENT_TOKEN')
 
+# Função que recebe um número de telefone e uma string de menssagem e envia a mensagem pela API do Z-API
 def sendMessage(phone:str, message:str):
     url = f'https://api.z-api.io/instances/{zId}/token/{zToken}/send-text'
     payload = {"phone": phone, "message": message}
